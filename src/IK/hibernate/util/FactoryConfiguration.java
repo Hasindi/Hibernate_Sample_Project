@@ -1,8 +1,6 @@
 package IK.hibernate.util;
 
-import IK.hibernate.entity.Customer;
-import IK.hibernate.entity.Laptop;
-import IK.hibernate.entity.Student;
+import IK.hibernate.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,7 +13,9 @@ public class FactoryConfiguration {
         Configuration configuration = new Configuration().configure()
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Student.class)
-                .addAnnotatedClass(Laptop.class);
+                .addAnnotatedClass(Laptop.class)
+                .addAnnotatedClass(Owner.class)
+                .addAnnotatedClass(Pet.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }
