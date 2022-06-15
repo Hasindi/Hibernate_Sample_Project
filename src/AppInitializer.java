@@ -35,40 +35,7 @@ public class AppInitializer  {
         c4.setSalary(25000);
         c4.setAddress("Galle");*/
 
-        //Student
-        Student s1 = new Student();
-        s1.setId("S001");
-        s1.setName("Hasindi");
 
-        Student s2 = new Student();
-        s2.setId("S002");
-        s2.setName("Hasindi");
-
-
-        //Laptop
-        Laptop l1 = new Laptop();
-        l1.setlId("L001");
-        l1.setDescription("Asus");
-        l1.setStudent(s1);
-
-        Laptop l2 = new Laptop();
-        l2.setlId("L002");
-        l2.setDescription("Dell");
-        l2.setStudent(s2);
-
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(s1);
-        session.save(s2);
-        session.save(l1);
-        session.save(l2);
-
-       /* //session.save(new Student("S003","Gayan"));
-        session.save(new Laptop("L001","Hp",new Student("S003","Gayan")));*/
-
-        transaction.commit();
-        session.close();
     }
 
 }
