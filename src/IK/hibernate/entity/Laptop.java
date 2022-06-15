@@ -10,7 +10,7 @@ public class Laptop {
     private String lId;
     private String description;
 
-    @OneToOne
+    @OneToOne(mappedBy = "Student")
     private Student student;
 
     public Laptop() {
