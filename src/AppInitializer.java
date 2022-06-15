@@ -1,11 +1,11 @@
-import IK.hibernate.entity.Customer;
-import IK.hibernate.entity.Laptop;
-import IK.hibernate.entity.Student;
+import IK.hibernate.entity.*;
 import IK.hibernate.util.FactoryConfiguration;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
 
 public class AppInitializer  {
 
@@ -56,16 +56,48 @@ public class AppInitializer  {
         l2.setDescription("Dell");
         l2.setStudent(s2);
 
+      /*session.save(new Student("S003","Gayan"));
+        session.save(new Laptop("L001","Hp",new Student("S003","Gayan")));*/
+
+        //Owner
+        Owner o1 = new Owner();
+        o1.setoId("O001");
+        o1.setName("Hasindi");
+
+
+        //Pet
+        Pet p1 = new Pet();
+        p1.setpId("P001");
+        p1.setName("Dog");
+        p1.setOwner(o1);
+
+        Pet p2 = new Pet();
+        p2.setpId("P002");
+        p2.setName("Cat");
+        p2.setOwner(o1);
+
+        //method 1
+        ArrayList<Pet> petList = new ArrayList<>();
+        petList.add(p1);
+        petList.add(p2);
+        o1.setPetList(petList);
+
+     /*   //method 2
+        o1.getPetList().add(p1);
+        o1.getPetList().add(p2);*/
+
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
+
         session.save(s1);
         session.save(s2);
         session.save(l1);
         session.save(l2);
-
-       /* //session.save(new Student("S003","Gayan"));
-        session.save(new Laptop("L001","Hp",new Student("S003","Gayan")));*/
+        session.save(o1);
+        session.save(p1);
+        session.save(p2);
 
         transaction.commit();
         session.close();
