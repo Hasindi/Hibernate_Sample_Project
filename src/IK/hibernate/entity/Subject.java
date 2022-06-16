@@ -16,6 +16,12 @@ public class Subject {
     public Subject() {
     }
 
+    public Subject(String subId, String name, List<Lecture> lectureList) {
+        this.subId = subId;
+        this.name = name;
+        this.lectureList = lectureList;
+    }
+
     public Subject(String subId, String name) {
         this.subId = subId;
         this.name = name;
@@ -35,6 +41,14 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Lecture> getLectureList() {
+        return lectureList;
+    }
+
+    public void setLectureList(List<Lecture> lectureList) {
+        this.lectureList = lectureList;
     }
 
     @Override

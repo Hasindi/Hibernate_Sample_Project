@@ -16,6 +16,12 @@ public class Lecture {
     public Lecture() {
     }
 
+    public Lecture(String lecId, String name, List<Subject> subjectList) {
+        this.lecId = lecId;
+        this.name = name;
+        this.subjectList = subjectList;
+    }
+
     public Lecture(String lecId, String name) {
         this.lecId = lecId;
         this.name = name;
@@ -35,6 +41,14 @@ public class Lecture {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Subject> getSubjectList() {
+        return subjectList;
+    }
+
+    public void setSubjectList(List<Subject> subjectList) {
+        this.subjectList = subjectList;
     }
 
     @Override
