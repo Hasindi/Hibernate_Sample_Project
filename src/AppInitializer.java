@@ -128,6 +128,9 @@ public class AppInitializer  {
         Transaction transaction = session.beginTransaction();
 
 
+        session.save(c1);
+        session.save(c2);
+        session.save(c3);
         session.save(s1);
         session.save(s2);
         session.save(l1);
