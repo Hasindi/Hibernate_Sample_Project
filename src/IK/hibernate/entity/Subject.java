@@ -10,7 +10,7 @@ public class Subject {
     private String subId;
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "subjectList")
     private List<Lecture> lectureList = new ArrayList<>();
 
     public Subject() {
