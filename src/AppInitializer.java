@@ -11,7 +11,8 @@ public class AppInitializer  {
 
     public static void main(String[] args) {
 
-/*        Customer c1 = new Customer();
+        //Customer
+        Customer c1 = new Customer();
         c1.setId("C001");
         c1.setName("Kamal");
         c1.setSalary(25000);
@@ -33,7 +34,8 @@ public class AppInitializer  {
         c4.setId("C004");
         c4.setName("Pawan");
         c4.setSalary(25000);
-        c4.setAddress("Galle");*/
+        c4.setAddress("Galle");
+
 
         //Student
         Student s1 = new Student();
@@ -58,6 +60,7 @@ public class AppInitializer  {
 
       /*session.save(new Student("S003","Gayan"));
         session.save(new Laptop("L001","Hp",new Student("S003","Gayan")));*/
+
 
         //Owner
         Owner o1 = new Owner();
@@ -87,6 +90,40 @@ public class AppInitializer  {
         o1.getPetList().add(p2);*/
 
 
+        //Lecture
+        Lecture lec1 = new Lecture();
+        lec1.setLecId("LE001");
+        lec1.setName("Hasindi");
+
+        Lecture lec2 = new Lecture();
+        lec2.setLecId("LE002");
+        lec2.setName("Dasun");
+
+
+        //Subject
+        Subject sub1 = new Subject();
+        sub1.setSubId("SUB001");
+        sub1.setName("ORM");
+
+        Subject sub2 = new Subject();
+        sub2.setSubId("SUB002");
+        sub2.setName("PRF");
+
+
+        ArrayList<Lecture> lectureArrayList = new ArrayList<>();
+        lectureArrayList.add(lec1);
+        lectureArrayList.add(lec2);
+
+        ArrayList<Subject> subList = new ArrayList<>();
+        subList.add(sub1);
+        subList.add(sub2);
+
+        lec1.setSubjectList(subList);
+        lec2.setSubjectList(subList);
+        sub1.setLectureList(lectureArrayList);
+        sub2.setLectureList(lectureArrayList);
+
+
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -98,6 +135,11 @@ public class AppInitializer  {
         session.save(o1);
         session.save(p1);
         session.save(p2);
+        session.save(lec1);
+        session.save(lec2);
+        session.save(sub1);
+        session.save(sub2);
+
 
         transaction.commit();
         session.close();

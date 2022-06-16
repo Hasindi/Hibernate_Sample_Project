@@ -1,10 +1,12 @@
 package IK.hibernate.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Lecture {
     @Id
     private String lecId;
