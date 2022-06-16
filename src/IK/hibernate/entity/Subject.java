@@ -1,11 +1,17 @@
 package IK.hibernate.entity;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Subject {
     @Id
     private String subId;
     private String name;
+
+    @ManyToMany
+    private List<Lecture> lectureList = new ArrayList<>();
 
     public Subject() {
     }
