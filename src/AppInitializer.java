@@ -110,6 +110,7 @@ public class AppInitializer  {
         sub2.setName("PRF");
 
 
+        //method 2
         ArrayList<Lecture> lectureArrayList = new ArrayList<>();
         lectureArrayList.add(lec1);
         lectureArrayList.add(lec2);
@@ -122,6 +123,13 @@ public class AppInitializer  {
         lec2.setSubjectList(subList);
         sub1.setLectureList(lectureArrayList);
         sub2.setLectureList(lectureArrayList);
+
+      /*  //method 2
+        lec1.getSubjectList().add(sub1);
+        lec2.getSubjectList().add(sub2);
+
+        sub1.getLectureList().add(lec1);
+        sub2.getLectureList().add(lec2);*/
 
 
         Session session = FactoryConfiguration.getInstance().getSession();
