@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AppInitializer  {
 
@@ -151,6 +153,40 @@ public class AppInitializer  {
         session.save(sub1);
         session.save(sub2);
 
+
+        //IN HQL
+
+        // SELECT *
+
+        String hql1 = "FROM Owner";  // need to add JPA Facet to the Module
+        Query query1 = session.createQuery(hql1);
+        List<Owner> ownerList = query1.list();
+
+        for (Owner owner : ownerList) {
+            System.out.println(owner.getoId() + " : " + owner.getName() + " : " + owner.getPetList());
+           // System.out.println(owner);
+        }
+
+        // SELECT specified COLUMN
+
+        String hql2 = "SELECT name FROM Owner";
+        Query query2 = session.createQuery(hql2);
+        List<String> nameList = query2.list();   // return String List
+
+        for (String name : nameList) {
+            System.out.println(name);
+        }
+
+        // WHERE clause
+        String hql3 = "FROM Owner WHERE name LIKE 'D%'";
+        Query query3 = session.createQuery(hql3);
+        List<Owner> ownerList2 = query3.list();
+
+       // List<Owner> ownerList = session.createQuery(hql3).list();
+
+        for (Owner owner : ownerList2) {
+            System.out.println(owner.getoId() + " : " + owner.getName() + " : " + owner.getPetList());
+        }
 
         transaction.commit();
         session.close();

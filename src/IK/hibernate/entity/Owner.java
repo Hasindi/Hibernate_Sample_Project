@@ -53,7 +53,6 @@ public class Owner {
         return "Owner{" +
                 "oId='" + oId + '\'' +
                 ", name='" + name + '\'' +
-                ", petList=" + petList +
                 '}';
     }
 }
