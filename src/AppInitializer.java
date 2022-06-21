@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppInitializer  {
+public class AppInitializer {
 
     public static void main(String[] args) {
 
@@ -153,8 +153,8 @@ public class AppInitializer  {
         session.save(sub1);
         session.save(sub2);
 
-
-        //IN HQL
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+        /*IN HQL*/
 
         // SELECT *
 
@@ -162,10 +162,12 @@ public class AppInitializer  {
         Query query1 = session.createQuery(hql1);
         List<Owner> ownerList = query1.list();
 
-        for (Owner owner : ownerList) {
-            System.out.println(owner.getoId() + " : " + owner.getName() + " : " + owner.getPetList());
-           // System.out.println(owner);
+        for (Owner owner1 : ownerList) {
+            System.out.println(owner1.getoId() + " : " + owner1.getName() + " : " + owner1.getPetList());
+            // System.out.println(owner);
         }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // SELECT specified COLUMN
 
@@ -177,19 +179,83 @@ public class AppInitializer  {
             System.out.println(name);
         }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // WHERE clause
         String hql3 = "FROM Owner WHERE name LIKE 'D%'";
         Query query3 = session.createQuery(hql3);
         List<Owner> ownerList2 = query3.list();
 
-       // List<Owner> ownerList = session.createQuery(hql3).list();
+        // List<Owner> ownerList = session.createQuery(hql3).list();
 
-        for (Owner owner : ownerList2) {
-            System.out.println(owner.getoId() + " : " + owner.getName() + " : " + owner.getPetList());
+        for (Owner owner2 : ownerList2) {
+            System.out.println(owner2.getoId() + " : " + owner2.getName() + " : " + owner2.getPetList());
         }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // DELETE clause -> query.executeUpdate()
+
+        String id = "P003";
+        String hql4 = "DELETE FROM Pet WHERE pId = :pet_id";
+
+        Query query4 = session.createQuery(hql4);
+        query4.setParameter("pet_id", id);
+
+        System.out.println(query4.executeUpdate() > 0 ? "Deleted..!" : "OOPs! something went wrong!");
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // UPDATE clause -> query.executeUpdate()
+
+        String id2 = "O001";
+        String name = "Sumera";
+
+        String hql5 = "UPDATE Owner SET name = :owner_name WHERE oId = :owner_id";
+        Query query5 = session.createQuery(hql5);
+        query5.setParameter("owner_name", name);
+        query5.setParameter("owner_id", id2);
+
+        int rowCount = query5.executeUpdate();
+        System.out.println(rowCount > 0 ? "Hureeeee!!!" : "OOPS!! something went wrong!");
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // ----- Using name parameters -----
+
+        // perform WHERE clause
+        String name1 = "Danuja";
+        String hql6 = "FROM Owner WHERE name = :owner_name";
+        Query query6 = session.createQuery(hql6);
+        query6.setParameter("owner_name", name1);
+        List<Owner> ownerList3 = query6.list();
+
+        for (Owner owner3 : ownerList3) {
+            System.out.println(owner3.getoId() + " : " + owner3.getName() + " : " + owner3.getPetList());
+
+        }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // ORDER BY clause
+
+        String hql7 = "FROM Owner o ORDER BY o.oId DESC";
+        List<Owner> ownerList4 = session.createQuery(hql7).list();
+
+        for (Owner owner4 : ownerList4) {
+            System.out.println(owner4.getoId() + " : " + owner4.getName() + " : " + owner4.getPetList());
+        }
+
+            /*try {
+                session.save();
+                return true;
+            } catch(Exception e) {
+                System.out.println("somthing happend");
+                return false;
+            } finally {
+                session.close();
+            }*/
 
         transaction.commit();
         session.close();
     }
-
 }
